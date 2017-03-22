@@ -14,7 +14,7 @@
     "parser",
     "jsonml"
   ],
-  "author": "Benjy Cui <benjytrys@gmail.com>",
+  "author": "noyobo <noyobo@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "jsonml.js": "^0.1.0",
@@ -25,7 +25,15 @@
     "eslint-config-egg": "^2.0.0",
     "mocha": "^2.4.5"
   },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
-  }
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noyobo/markdown2jsonml.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noyobo/markdown2jsonml/issues"
+  },
+  "homepage": "https://github.com/noyobo/markdown2jsonml#readme"
 }
