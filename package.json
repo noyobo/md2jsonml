@@ -1,6 +1,6 @@
 {
   "name": "markdown2jsoml",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parse Markdown into JsonML.",
   "main": "index.js",
   "scripts": {
