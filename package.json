@@ -1,5 +1,5 @@
 {
-  "name": "markdown2jsoml",
+  "name": "markdown2jsonml",
   "version": "0.1.2",
   "description": "Parse Markdown into JsonML.",
   "main": "index.js",
