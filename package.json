@@ -1,0 +1,31 @@
+{
+  "name": "markdown2jsoml",
+  "version": "0.1.0",
+  "description": "Parse Markdown into JsonML.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./index.js ./src ./test",
+    "eslint-fix": "eslint --fix ./index.js ./src ./test",
+    "test": "npm run lint && mocha"
+  },
+  "keywords": [
+    "markdown",
+    "yaml",
+    "parser",
+    "jsonml"
+  ],
+  "author": "Benjy Cui <benjytrys@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jsonml.js": "^0.1.0",
+    "remark": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0",
+    "eslint-config-egg": "^2.0.0",
+    "mocha": "^2.4.5"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  }
+}
