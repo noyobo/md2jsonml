@@ -8,29 +8,28 @@ const MT = require('..');
 
 describe('MT', () => {
   const md = fs.readFileSync('./test/test.md').toString();
+  console.log(md);
   const ret = MT(md);
-  // console.log(JSON.stringify(ret, null, 2));
+
+  console.log(JSON.stringify(ret, null, 2));
 
   const content = ret.content;
 
   it('support link reference', function() {
-    const reference = content[8];
+    const reference = content;
     assert.deepEqual(reference, [
-      'p',
+      'article',
+      ['h2', 'React 简介'],
+      ['p', '这是一个简单的例子'],
+      ['div', 'hello world'],
       [
-        'a',
+        'pre',
         {
-          href: 'http://npmjs.org/task/378711'
+          lang: 'jsx'
         },
-        [
-          'img',
-          {
-            src: 'http://npmjs.org/task/378711/status.svg',
-            title: 'build status',
-            alt: 'build status'
-          }
-        ]
-      ]
+        ['code', "import React from 'react';"]
+      ],
+      ['p', '内联标记 ', ['code', '<div />']]
     ]);
   });
 });
