@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./index.js ./src ./test",
     "eslint-fix": "eslint --fix ./index.js ./src ./test",
-    "test": "npm run lint && mocha"
+    "test": "mocha"
   },
   "keywords": [
     "markdown",
@@ -17,7 +17,9 @@
   "author": "noyobo <noyobo@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jsonml.js": "^0.1.0",
+    "bluebird": "^3.5.0",
+    "co": "^4.6.0",
+    "jsonml-parse": "^1.0.1",
     "remark": "^4.2.0"
   },
   "devDependencies": {

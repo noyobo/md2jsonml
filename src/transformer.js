@@ -1,9 +1,9 @@
 'use strict';
 
-const JsonML = require('jsonml.js/lib/dom');
-
 let isTHead = false;
 let definitionMap = {};
+
+const html2jsonml = require('./html2jsoml');
 
 function transformTHead(node) {
   const transformedNode = transformer(node);
@@ -34,9 +34,9 @@ function transformer(node, index) {
     return node.map(transformer, index);
   }
 
-  const transformedChildren = node.type === 'table' ?
-    transformer(node.children.slice(1)) :
-    transformer(node.children);
+  const transformedChildren = node.type === 'table'
+    ? transformer(node.children.slice(1))
+    : transformer(node.children);
 
   switch (node.type) {
     case 'root':
@@ -52,21 +52,28 @@ function transformer(node, index) {
     case 'paragraph':
       return ['p'].concat(transformedChildren);
     case 'link':
-      return ['a', {
-        title: node.title,
-        href: node.url,
-      }].concat(transformedChildren);
+      return [
+        'a',
+        {
+          title: node.title,
+          href: node.url
+        }
+      ].concat(transformedChildren);
     case 'image':
-      return ['img', {
-        title: node.title,
-        src: node.url,
-        alt: node.alt,
-      }];
+      return [
+        'img',
+        {
+          title: node.title,
+          src: node.url,
+          alt: node.alt
+        }
+      ];
     case 'table':
       isTHead = true;
       return [
-        'table', ['thead', transformTHead(node.children[0])],
-        ['tbody'].concat(transformedChildren),
+        'table',
+        ['thead', transformTHead(node.children[0])],
+        ['tbody'].concat(transformedChildren)
       ];
     case 'tableRow':
       return ['tr'].concat(transformedChildren);
@@ -79,9 +86,7 @@ function transformer(node, index) {
     case 'inlineCode':
       return ['code', node.value];
     case 'code':
-      return ['pre', { lang: node.lang },
-        ['code', node.value],
-      ];
+      return ['pre', { lang: node.lang }, ['code', node.value]];
     case 'blockquote':
       return ['blockquote'].concat(transformedChildren);
     case 'break':
@@ -90,21 +95,27 @@ function transformer(node, index) {
       return ['hr'];
     case 'html':
       const tagClosed = isClosing(node.value);
-      const htmlMT = JsonML.fromHTMLText(node.value);
+      const htmlMT = html2jsonml(node.value);
       if (!tagClosed) {
         htmlMT.push('__tag_content_placeholder__');
       }
       return htmlMT;
     case 'linkReference':
-      return ['a', {
-        href: `reference#${node.identifier}`,
-      }].concat(transformedChildren);
+      return [
+        'a',
+        {
+          href: `reference#${node.identifier}`
+        }
+      ].concat(transformedChildren);
     case 'imageReference':
-      return ['img', {
-        src: `reference#${node.identifier}`,
-        title: node.alt,
-        alt: node.alt,
-      }];
+      return [
+        'img',
+        {
+          src: `reference#${node.identifier}`,
+          title: node.alt,
+          alt: node.alt
+        }
+      ];
     default:
       return node;
   }
@@ -152,7 +163,7 @@ function filterDefinition(item) {
   if (item && item.type === 'definition') {
     definitionMap[item.identifier] = {
       title: item.title,
-      url: item.url,
+      url: item.url
     };
     return false;
   }
