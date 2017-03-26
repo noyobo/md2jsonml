@@ -7,6 +7,11 @@
 
 Parse markdown to [JsonML](http://www.jsonml.org/), work on NodeJS and Browser.
 
+## Features
+
+- Support HTML tags
+- Support reference
+
 ## Installation
 
 ```bash

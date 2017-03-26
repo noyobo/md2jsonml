@@ -1,5 +1,7 @@
 var TAG_REGEX = /(?:\<(\w+)([^\>]*)\>)([\t\n\s\S]*)(?:\<\/(\1)\>)/;
 var CLOSE_TAG_REGEX = /(?:\<(\w+)([\n\s\S]*)\/\>)/;
+var SINGGLE_TAG = /^\<(\w+)([^\>]*)\>$/;
+var TAIL_TAG = /^\<\/\w+\>/;
 
 function attributeParse(attribute) {
   attribute = attribute.trim();
@@ -40,6 +42,15 @@ module.exports = function html2json(htmlText) {
     } else {
       return [element[1]];
     }
+  } else if (SINGGLE_TAG.test(htmlText)) {
+    var element = htmlText.match(SINGGLE_TAG);
+    if (element[2].trim()) {
+      return [element[1], attributeParse(element[2])];
+    } else {
+      return [element[1]];
+    }
+  } else if (TAIL_TAG.test(htmlText)) {
+    return [''];
   } else {
     return htmlText;
   }

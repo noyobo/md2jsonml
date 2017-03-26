@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./src/MT');
+module.exports = require('./src/md2jsonml');
