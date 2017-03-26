@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint ./index.js ./src ./test",
     "eslint-fix": "eslint --fix ./index.js ./src ./test",
-    "test": "mocha"
+    "test": "nyc --reporter=html --reporter=text mocha",
+    "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
   "keywords": [
     "markdown",
@@ -17,15 +18,12 @@
   "author": "noyobo <noyobo@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "co": "^4.6.0",
-    "jsonml-parse": "^1.0.1",
     "remark": "^4.2.0"
   },
   "devDependencies": {
-    "eslint": "^2.7.0",
-    "eslint-config-egg": "^2.0.0",
-    "mocha": "^2.4.5"
+    "codecov": "^2.1.0",
+    "mocha": "^2.4.5",
+    "nyc": "^10.1.2"
   },
   "directories": {
     "test": "test"

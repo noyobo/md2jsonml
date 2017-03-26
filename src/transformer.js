@@ -13,10 +13,7 @@ function transformTHead(node) {
 
 const selfClosing = ['!', 'img', 'link', 'hr', 'br'];
 
-function isClosing(htmlValue, tagName) {
-  if (tagName) {
-    return new RegExp('^</' + tagName + '>$').test(htmlValue);
-  }
+function isClosing(htmlValue) {
   let tag = htmlValue.match(/^<(!|[a-zA-Z]+).*?\/?>/);
   tag = tag && tag[1];
   if (tag && selfClosing.indexOf(tag) === -1) {
