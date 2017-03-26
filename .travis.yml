@@ -4,4 +4,4 @@ node_js:
   - "6"
   - "7"
 
-after_script: npm rum coverage
+after_script: npm rum codecov
