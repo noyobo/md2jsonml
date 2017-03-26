@@ -1,80 +1,22 @@
-# Mark Twain
+# Markdown to JsonML
 
-[![](https://img.shields.io/travis/benjycui/mark-twain.svg?style=flat-square)](https://travis-ci.org/benjycui/mark-twain)
-[![npm package](https://img.shields.io/npm/v/mark-twain.svg?style=flat-square)](https://www.npmjs.org/package/mark-twain)
-[![NPM downloads](http://img.shields.io/npm/dm/mark-twain.svg?style=flat-square)](https://npmjs.org/package/mark-twain)
-[![Dependency Status](https://david-dm.org/benjycui/mark-twain.svg?style=flat-square)](https://david-dm.org/benjycui/mark-twain)
+[![](https://img.shields.io/travis/noyobo/md2jsonml.svg?style=flat-square)](https://travis-ci.org/noyobo/md2jsonml)
+[![npm package](https://img.shields.io/npm/v/md2jsonml.svg?style=flat-square)](https://www.npmjs.org/package/md2jsonml)
+[![NPM downloads](http://img.shields.io/npm/dm/md2jsonml.svg?style=flat-square)](https://npmjs.org/package/md2jsonml)
+[![Dependency Status](https://david-dm.org/noyobo/md2jsonml.svg?style=flat-square)](https://david-dm.org/noyobo/md2jsonml)
 
-It is not easy to process Markdown directly. However, we can use `mark-twain` to parse a Markdown file(and YAML/HTML which in it) into [JsonML](http://www.jsonml.org/) which is easier to process.
+Parse markdown to [JsonML](http://www.jsonml.org/), work on NodeJS and Browser.
 
 ## Installation
 
 ```bash
-npm install mark-twain
+npm install md2jsonml
 ```
 
 ## Usage
 
-```js
-const MT = require('mark-twain');
-const fs = require('fs');
-const jsonML = MT(fs.readFileSync('something.md').toString());
 ```
+const md2jsonml = require('md2jsonml');
 
-The returned value of `MT` would be JsonML, something looks like this:
-
-```js
-{
-  // YAML will be parsed as meta data.
-  meta: {
-    title: 'Title',
-    ...
-  },
-
-  // Others will be parsed as JsonML.
-  content:  [
-    "article",
-    ["h1", "Here is a heading"],
-    [
-      "ol",
-      [
-        "li",
-        [
-          "p",
-          "First"
-        ]
-      ],
-      ...
-    ],
-    [
-      "p",
-      "This is a paragraph, including ",
-      [
-        "em",
-        "EM"
-      ],
-      " and ",
-      [
-        "strong",
-        "STRONG"
-      ],
-      ". Any question? Oh, I almost forget ",
-      [
-        "code",
-        "inline code"
-      ],
-      "."
-    ],
-    ...
-  ]
-}
+cosnt jsonml = md2jsonml('## Markdown content')
 ```
-
-## Relative
-
-* [jsonml-to-react-component](https://github.com/benjycui/jsonml-to-react-component) To convert JsonML to React Component.
-* [jsonml.js](https://github.com/benjycui/jsonml.js) A collection of JsonML tools.
-
-## Liscence
-
-MIT

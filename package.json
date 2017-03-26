@@ -1,7 +1,7 @@
 {
-  "name": "markdown2jsonml",
+  "name": "md2jsonml",
   "version": "0.1.2",
-  "description": "Parse Markdown into JsonML.",
+  "description": "Markdown to JsonML",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./index.js ./src ./test",
@@ -32,10 +32,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noyobo/markdown2jsonml.git"
+    "url": "git+https://github.com/noyobo/md2jsonml.git"
   },
   "bugs": {
-    "url": "https://github.com/noyobo/markdown2jsonml/issues"
+    "url": "https://github.com/noyobo/md2jsonml/issues"
   },
-  "homepage": "https://github.com/noyobo/markdown2jsonml#readme"
+  "homepage": "https://github.com/noyobo/md2jsonml#readme"
 }
