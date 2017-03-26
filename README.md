@@ -21,8 +21,12 @@ npm install md2jsonml
 
 ## Usage
 
-```
+```js
 const md2jsonml = require('md2jsonml');
 
 cosnt jsonml = md2jsonml('## Markdown content')
 ```
+
+## Examples
+
+see [test](./test)
