@@ -16,13 +16,10 @@ describe('selfClosing', function() {
     const expected = [
       'article',
       [
-        'p',
-        [
-          'img',
-          {
-            src: 'xxx'
-          }
-        ]
+        'img',
+        {
+          src: 'xxx'
+        }
       ]
     ];
     assert.deepEqual(actual, expected);
@@ -39,13 +36,10 @@ describe('selfClosing', function() {
     const expected = [
       'article',
       [
-        'p',
-        [
-          'link',
-          {
-            href: 'a.css'
-          }
-        ]
+        'link',
+        {
+          href: 'a.css'
+        }
       ]
     ];
     assert.deepEqual(actual, expected);
@@ -73,7 +67,7 @@ describe('selfClosing', function() {
       )
     );
 
-    const expected = ['article', ['p', ['br']]];
+    const expected = ['article', ['br']];
     assert.deepEqual(actual, expected);
   });
 });
