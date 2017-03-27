@@ -9,7 +9,7 @@ describe('EMPHASIS', function() {
       unpad(
         `
         <div>hello world</div>
-      `
+        `
       )
     );
     const expected = ['article', ['div', 'hello world']];
@@ -20,7 +20,7 @@ describe('EMPHASIS', function() {
       unpad(
         `
         <div class="md2jsonml" disable>hello world</div>
-      `
+        `
       )
     );
     const expected = [
@@ -41,7 +41,7 @@ describe('EMPHASIS', function() {
       unpad(
         `
         <span>hello world</span>
-      `
+        `
       )
     );
 
@@ -53,7 +53,7 @@ describe('EMPHASIS', function() {
       unpad(
         `
         <p>hello world</p>
-      `
+        `
       )
     );
     const expected = ['article', ['p', 'hello world']];
@@ -64,7 +64,7 @@ describe('EMPHASIS', function() {
       unpad(
         `
         <a name="hello"></a>
-      `
+        `
       )
     );
     const expected = ['article', ['p', ['a', { name: 'hello' }]]];

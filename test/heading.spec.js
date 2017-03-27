@@ -14,5 +14,5 @@ describe('heading', function() {
   it('heading work underline-ish style', function() {
     assert.deepEqual(md2jsonml('hello\n======'), ['article', ['h1', 'hello']]);
     assert.deepEqual(md2jsonml('hello\n------'), ['article', ['h2', 'hello']]);
-  })
+  });
 });

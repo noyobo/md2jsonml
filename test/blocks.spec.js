@@ -11,7 +11,7 @@ describe('blocks', function() {
         This is a normal paragraph:
 
             This is a code block.
-      `
+        `
       )
     );
     const expected = [
@@ -37,7 +37,7 @@ describe('blocks', function() {
             tell application "Foo"
                 beep
             end tell
-      `
+        `
       )
     );
 
@@ -64,7 +64,7 @@ describe('blocks', function() {
             <div class="footer">
                 &copy; 2004 Foo Corporation
             </div>
-      `
+        `
       )
     );
     const expected = [
@@ -90,7 +90,7 @@ describe('blocks', function() {
           return true
         }
         \`\`\`
-      `
+        `
       )
     );
     const expected = [
@@ -115,7 +115,7 @@ describe('blocks', function() {
           return true
         }
         \`\`\`
-      `
+        `
       )
     );
     const expected = [
@@ -137,7 +137,7 @@ describe('blocks', function() {
         `
         > Coffee. The finest organic suspension ever devised... I beat the Borg with it.
         > - Captain Janeway
-      `
+        `
       )
     );
     const expected = [

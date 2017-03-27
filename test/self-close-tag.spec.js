@@ -9,7 +9,7 @@ describe('selfClosing', function() {
       unpad(
         `
         <img src="xxx" />
-      `
+        `
       )
     );
 
@@ -29,7 +29,7 @@ describe('selfClosing', function() {
       unpad(
         `
         <link href="a.css" />
-      `
+        `
       )
     );
 
@@ -50,7 +50,7 @@ describe('selfClosing', function() {
       unpad(
         `
         <hr />
-      `
+        `
       )
     );
 
@@ -63,7 +63,7 @@ describe('selfClosing', function() {
       unpad(
         `
         <br />
-      `
+        `
       )
     );
 

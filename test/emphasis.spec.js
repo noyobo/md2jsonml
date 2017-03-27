@@ -17,7 +17,7 @@ describe('EMPHASIS', function() {
         __double underscores__
 
         \`inline code\`
-      `
+        `
       )
     );
 

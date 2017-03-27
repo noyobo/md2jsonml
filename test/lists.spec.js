@@ -8,10 +8,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      1. one
-      2. two
-      3. three
-      `
+        1. one
+        2. two
+        3. three
+        `
       )
     );
     assert.deepEqual(actual, [
@@ -24,10 +24,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      4. one
-      1. two
-      8. three
-      `
+        4. one
+        1. two
+        8. three
+        `
       )
     );
     assert.deepEqual(actual, [
@@ -40,10 +40,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      + one
-      + two
-      + three
-      `
+        + one
+        + two
+        + three
+        `
       )
     );
     assert.deepEqual(actual, [
@@ -56,10 +56,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      - one
-      - two
-      - three
-      `
+        - one
+        - two
+        - three
+        `
       )
     );
     assert.deepEqual(actual, [
@@ -72,10 +72,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      * one
-      * two
-      * three
-      `
+        * one
+        * two
+        * three
+        `
       )
     );
     assert.deepEqual(actual, [
@@ -88,10 +88,10 @@ describe('lists', function() {
     const actual = md2jsonml(
       unpad(
         `
-      *   one
-      *   two
-      *   three
-      `
+        *   one
+        *   two
+        *   three
+        `
       )
     );
     assert.deepEqual(actual, [

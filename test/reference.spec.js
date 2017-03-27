@@ -16,7 +16,7 @@ describe('link references', function() {
         * Something
         * [Something](www.something.com)
         * ![Somethong](www.comething.com/img)
-      `
+        `
       )
     );
 

@@ -1,4 +1,4 @@
-// Remove padding from a string.
+// Remove left padding from a string.
 module.exports = function unpad(str) {
   const lines = str.split('\n');
   const m = lines[1] && lines[1].match(/^\s+/);

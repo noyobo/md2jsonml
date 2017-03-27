@@ -9,7 +9,7 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         * * *
-      `
+        `
       )
     );
     const expected = ['article', ['hr']];
@@ -21,7 +21,7 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         ***
-      `
+        `
       )
     );
     const expected = ['article', ['hr']];
@@ -33,7 +33,7 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         *****
-      `
+        `
       )
     );
     const expected = ['article', ['hr']];
@@ -45,7 +45,7 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         - - -
-      `
+        `
       )
     );
     const expected = ['article', ['hr']];
@@ -57,7 +57,7 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         --------------
-      `
+        `
       )
     );
     const expected = ['article', ['hr']];
