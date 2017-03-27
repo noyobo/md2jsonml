@@ -146,8 +146,7 @@ function placeholderReplace(item, index) {
 function filterEmpty(item, index) {
   if (item === '') {
     this.splice(index, 1);
-  }
-  if (Array.isArray(item)) {
+  } else if (Array.isArray(item)) {
     if (item.length === 0 || item[0] === '') {
       this.splice(index, 1);
     } else {
