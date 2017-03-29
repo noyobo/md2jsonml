@@ -4,8 +4,7 @@
   "description": "Markdown to JsonML",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./index.js ./src ./test",
-    "eslint-fix": "eslint --fix ./index.js ./src ./test",
+    "lint": "eslint -c ./.eslintrc.js ./index.js ./src",
     "test": "nyc --reporter=html --reporter=text mocha",
     "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
   },
@@ -22,6 +21,9 @@
   },
   "devDependencies": {
     "codecov": "^2.1.0",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-base": "^11.1.2",
+    "eslint-plugin-import": "^2.2.0",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2"
   },
