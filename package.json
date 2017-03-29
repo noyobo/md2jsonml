@@ -18,7 +18,6 @@
   "author": "noyobo <noyobo@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^1.1.3",
     "remark": "^7.0.0"
   },
   "devDependencies": {
