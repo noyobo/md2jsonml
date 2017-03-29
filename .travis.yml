@@ -1,8 +1,19 @@
 language: node_js
+
 node_js:
+  - "4"
   - "5"
   - "6"
-  - "7"
+  - "node"
+
+notifications:
+  email:
+    on_success: never # default: change
+    on_failure: always # default: always
 
 after_script:
   - npm run codecov
+
+notifications:
+  email:
+  - noyobo@gmail.com
