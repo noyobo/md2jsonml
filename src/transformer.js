@@ -1,9 +1,11 @@
 'use strict';
 
-let isTHead = false;
-let definitionMap = {};
+/* eslint consistent-return: off, no-case-declarations: off, no-use-before-define: off */
 
 const html2jsonml = require('./html2jsoml');
+
+let isTHead = false;
+const definitionMap = {};
 
 function transformTHead(node) {
   const transformedNode = transformer(node);
@@ -17,7 +19,7 @@ function isClosing(htmlValue) {
   let tag = htmlValue.match(/^<(!|[a-zA-Z]+).*?\/?>/);
   tag = tag && tag[1];
   if (tag && selfClosing.indexOf(tag) === -1) {
-    const closeTag = new RegExp('</' + tag + '>$');
+    const closeTag = new RegExp(`</${tag}>$`);
     const close = closeTag.test(htmlValue);
     return close;
   }
@@ -119,7 +121,7 @@ function transformer(node, index) {
 }
 
 let placeholderParent;
-let definitionRegex = /reference#([^\]]+)/;
+const definitionRegex = /reference#([^\]]+)/;
 // replace __tag_content_placeholder__
 function placeholderReplace(item, index) {
   if (Array.isArray(item)) {
@@ -132,13 +134,15 @@ function placeholderReplace(item, index) {
     placeholderParent = this;
     this.splice(index, 1);
   } else if (definitionRegex.test(item.href)) {
-    item.href = item.href.replace(definitionRegex, function(str, ref) {
-      return definitionMap[ref] && definitionMap[ref].url;
-    });
+    item.href = item.href.replace(
+      definitionRegex,
+      (str, ref) => definitionMap[ref] && definitionMap[ref].url
+    );
   } else if (definitionRegex.test(item.src)) {
-    item.src = item.src.replace(definitionRegex, function(str, ref) {
-      return definitionMap[ref] && definitionMap[ref].url;
-    });
+    item.src = item.src.replace(
+      definitionRegex,
+      (str, ref) => definitionMap[ref] && definitionMap[ref].url
+    );
   }
 }
 
@@ -166,7 +170,7 @@ function filterDefinition(item) {
   return true;
 }
 
-module.exports = function(ast) {
+module.exports = (ast) => {
   let markdownData = transformer(ast);
 
   markdownData = markdownData.filter(filterDefinition);

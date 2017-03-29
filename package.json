@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint -c ./.eslintrc.js ./index.js ./src",
     "test": "nyc --reporter=html --reporter=text mocha",
-    "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov"
+    "codecov": "nyc report --reporter=lcov > coverage/coverage.lcov && codecov"
   },
   "keywords": [
     "markdown",
