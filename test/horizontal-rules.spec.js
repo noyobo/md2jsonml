@@ -1,4 +1,4 @@
-const md2jsonml = require('../');
+const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
 const util = require('util');
