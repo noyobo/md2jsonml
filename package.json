@@ -3,6 +3,10 @@
   "version": "1.2.3",
   "description": "Markdown to JsonML",
   "main": "index.js",
+  "files": [
+    "lib/",
+    "index.js"
+  ],
   "scripts": {
     "lint": "eslint -c ./.eslintrc.js ./index.js ./src",
     "babel": "babel --presets=es2015 ./src -d ./lib",
