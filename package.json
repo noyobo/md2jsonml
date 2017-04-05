@@ -1,6 +1,6 @@
 {
   "name": "md2jsonml",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Markdown to JsonML",
   "main": "index.js",
   "files": [
