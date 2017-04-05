@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint -c ./.eslintrc.js ./index.js ./src",
+    "babel": "babel --presets=es2015 ./src -d ./lib",
     "test": "nyc --reporter=html --reporter=text mocha",
     "codecov": "nyc report --reporter=lcov > coverage/coverage.lcov && codecov"
   },
@@ -20,6 +21,8 @@
     "remark": "^7.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
     "codecov": "^2.1.0",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
