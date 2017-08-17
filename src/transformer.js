@@ -11,7 +11,7 @@ function transformTHead (node) {
   return transformedNode
 }
 
-var selfClosing = ['!', 'img', 'link', 'hr', 'br']
+var selfClosing = ['!', 'img', 'link', 'hr', 'br', 'video']
 
 function isClosing (htmlValue) {
   var tag = htmlValue.match(/^<(!|[a-zA-Z]+).*?\/?>/)
