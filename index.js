@@ -1,1 +1,1 @@
-module.exports = require('./lib/md2jsonml')
+module.exports = require('./lib/md2jsonml');
