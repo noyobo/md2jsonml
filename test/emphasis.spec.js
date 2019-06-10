@@ -2,7 +2,7 @@ const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
 
-describe('EMPHASIS', function() {
+describe('luanch', function() {
   it('work', function() {
     const actual = md2jsonml(
       unpad(

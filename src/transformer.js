@@ -118,6 +118,7 @@ function transformer(node, index) {
 }
 
 var placeholderParent;
+var parentNode;
 var definitionRegex = /reference#([^\]]+)/;
 // replace __tag_content_placeholder__
 function placeholderReplace(item, index) {
@@ -126,18 +127,28 @@ function placeholderReplace(item, index) {
     placeholderParent = null;
     this.splice(index, 1);
     // @hack 修改了当前数组的长度, 会中断 forEach 的下一个值
+    parentNode = this;
     this.forEach(placeholderReplace.bind(this));
+  } else if (item === 'a') {
+    // eslint-disable-next-line no-unused-vars
+    var [tag, props, children] = this;
+    if (definitionRegex.test(props.href)) {
+      var linkRef = definitionRegex.exec(props.href);
+      if (linkRef && linkRef[1]) {
+        var linkUrl =
+          definitionMap[linkRef[1]] && definitionMap[linkRef[1]].url;
+        if (linkUrl) {
+          props.href = props.href.replace(definitionRegex, linkUrl);
+        } else {
+          // @fixed https://github.com/noyobo/md2jsonml/issues/11
+          // 未指定 reference 还原回字符串
+          parentNode[parentNode.length - 1] = `[${children}]`;
+        }
+      }
+    }
   } else if (item === '__tag_content_placeholder__') {
     placeholderParent = this;
     this.splice(index, 1);
-  } else if (definitionRegex.test(item.href)) {
-    var linkRef = definitionRegex.exec(item.href);
-    if (linkRef && linkRef[1]) {
-      var linkUrl = definitionMap[linkRef[1]] && definitionMap[linkRef[1]].url;
-      if (linkUrl) {
-        item.href = item.href.replace(definitionRegex, linkUrl);
-      }
-    }
   } else if (definitionRegex.test(item.src)) {
     var srcRef = definitionRegex.exec(item.src);
     if (srcRef && srcRef[1]) {
@@ -150,6 +161,7 @@ function placeholderReplace(item, index) {
     if (item.length === 0 || item[0] === '') {
       this.splice(index, 1);
     } else {
+      parentNode = this;
       item.forEach(placeholderReplace.bind(item));
     }
   } else if (item === '') {
