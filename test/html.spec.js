@@ -3,6 +3,22 @@ const assert = require('assert');
 const unpad = require('./unpad');
 
 describe('EMPHASIS', function() {
+  it('empty', function() {
+    const actual = md2jsonml('');
+    const expected = ['article'];
+    assert.deepEqual(actual, expected);
+  });
+  it('div empty', function() {
+    const actual = md2jsonml(
+      unpad(
+        `
+        <div></div>
+        `,
+      ),
+    );
+    const expected = ['article', ['div']];
+    assert.deepEqual(actual, expected);
+  });
   it('div', function() {
     const actual = md2jsonml(
       unpad(
@@ -33,6 +49,17 @@ describe('EMPHASIS', function() {
         'hello world',
       ],
     ];
+    assert.deepEqual(actual, expected);
+  });
+  it('br', function() {
+    const actual = md2jsonml(
+      unpad(
+        `
+        <br />
+        `,
+      ),
+    );
+    const expected = ['article', ['br']];
     assert.deepEqual(actual, expected);
   });
   it('span', function() {

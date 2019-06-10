@@ -122,7 +122,9 @@ var parentNode;
 var definitionRegex = /reference#([^\]]+)/;
 // replace __tag_content_placeholder__
 function placeholderReplace(item, index) {
-  if (placeholderParent) {
+  if (item === '' || !item) {
+    this.splice(index, 1);
+  } else if (placeholderParent) {
     placeholderParent.push(item);
     placeholderParent = null;
     this.splice(index, 1);
@@ -149,7 +151,7 @@ function placeholderReplace(item, index) {
   } else if (item === '__tag_content_placeholder__') {
     placeholderParent = this;
     this.splice(index, 1);
-  } else if (definitionRegex.test(item.src)) {
+  } else if (item && definitionRegex.test(item.src)) {
     var srcRef = definitionRegex.exec(item.src);
     if (srcRef && srcRef[1]) {
       var srcUrl = definitionMap[srcRef[1]] && definitionMap[srcRef[1]].url;
@@ -164,8 +166,6 @@ function placeholderReplace(item, index) {
       parentNode = this;
       item.forEach(placeholderReplace.bind(item));
     }
-  } else if (item === '') {
-    this.splice(index, 1);
   }
 }
 
