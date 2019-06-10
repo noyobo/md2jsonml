@@ -1,7 +1,6 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
 describe('selfClosing', function() {
   it('<img />', function() {
@@ -9,8 +8,8 @@ describe('selfClosing', function() {
       unpad(
         `
         <img src="xxx" />
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -18,9 +17,9 @@ describe('selfClosing', function() {
       [
         'img',
         {
-          src: 'xxx'
-        }
-      ]
+          src: 'xxx',
+        },
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -29,8 +28,8 @@ describe('selfClosing', function() {
       unpad(
         `
         <link href="a.css" />
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -38,9 +37,9 @@ describe('selfClosing', function() {
       [
         'link',
         {
-          href: 'a.css'
-        }
-      ]
+          href: 'a.css',
+        },
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -50,8 +49,8 @@ describe('selfClosing', function() {
       unpad(
         `
         <hr />
-        `
-      )
+        `,
+      ),
     );
 
     const expected = ['article', ['hr']];
@@ -63,8 +62,8 @@ describe('selfClosing', function() {
       unpad(
         `
         <br />
-        `
-      )
+        `,
+      ),
     );
 
     const expected = ['article', ['br']];

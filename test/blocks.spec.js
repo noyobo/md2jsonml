@@ -1,7 +1,6 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
 describe('blocks', function() {
   it('code block', function() {
@@ -11,8 +10,8 @@ describe('blocks', function() {
         This is a normal paragraph:
 
             This is a code block.
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
@@ -20,10 +19,10 @@ describe('blocks', function() {
       [
         'pre',
         {
-          lang: null
+          lang: null,
         },
-        ['code', 'This is a code block.']
-      ]
+        ['code', 'This is a code block.'],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -37,8 +36,8 @@ describe('blocks', function() {
             tell application "Foo"
                 beep
             end tell
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -47,10 +46,10 @@ describe('blocks', function() {
       [
         'pre',
         {
-          lang: null
+          lang: null,
         },
-        ['code', 'tell application "Foo"\n    beep\nend tell']
-      ]
+        ['code', 'tell application "Foo"\n    beep\nend tell'],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -64,8 +63,8 @@ describe('blocks', function() {
             <div class="footer">
                 &copy; 2004 Foo Corporation
             </div>
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
@@ -73,10 +72,13 @@ describe('blocks', function() {
       [
         'pre',
         {
-          lang: null
+          lang: null,
         },
-        ['code', '<div class="footer">\n    &copy; 2004 Foo Corporation\n</div>']
-      ]
+        [
+          'code',
+          '<div class="footer">\n    &copy; 2004 Foo Corporation\n</div>',
+        ],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -90,18 +92,18 @@ describe('blocks', function() {
           return true
         }
         \`\`\`
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
       [
         'pre',
         {
-          lang: null
+          lang: null,
         },
-        ['code', 'if (isAwesome){\n  return true\n}']
-      ]
+        ['code', 'if (isAwesome){\n  return true\n}'],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -115,18 +117,18 @@ describe('blocks', function() {
           return true
         }
         \`\`\`
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
       [
         'pre',
         {
-          lang: 'javascript'
+          lang: 'javascript',
         },
-        ['code', 'if (isAwesome){\n  return true\n}']
-      ]
+        ['code', 'if (isAwesome){\n  return true\n}'],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -137,16 +139,19 @@ describe('blocks', function() {
         `
         > Coffee. The finest organic suspension ever devised... I beat the Borg with it.
         > - Captain Janeway
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
       [
         'blockquote',
-        ['p', 'Coffee. The finest organic suspension ever devised... I beat the Borg with it.'],
-        ['ul', ['li', ['p', 'Captain Janeway']]]
-      ]
+        [
+          'p',
+          'Coffee. The finest organic suspension ever devised... I beat the Borg with it.',
+        ],
+        ['ul', ['li', ['p', 'Captain Janeway']]],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });

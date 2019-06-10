@@ -1,7 +1,6 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
 describe('images', function() {
   it('pictures', function() {
@@ -9,8 +8,8 @@ describe('images', function() {
       unpad(
         `
         ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-        `
-      )
+        `,
+      ),
     );
     const expected = [
       'article',
@@ -21,10 +20,10 @@ describe('images', function() {
           {
             title: null,
             src: 'https://octodex.github.com/images/yaktocat.png',
-            alt: 'Image of Yaktocat'
-          }
-        ]
-      ]
+            alt: 'Image of Yaktocat',
+          },
+        ],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });
@@ -34,8 +33,8 @@ describe('images', function() {
       unpad(
         `
         [![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)](https://github.com)
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -46,18 +45,18 @@ describe('images', function() {
           'a',
           {
             title: null,
-            href: 'https://github.com'
+            href: 'https://github.com',
           },
           [
             'img',
             {
               title: null,
               src: 'https://octodex.github.com/images/yaktocat.png',
-              alt: 'Image of Yaktocat'
-            }
-          ]
-        ]
-      ]
+              alt: 'Image of Yaktocat',
+            },
+          ],
+        ],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });

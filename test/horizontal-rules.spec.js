@@ -1,7 +1,6 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
 describe('HORIZONTAL RULES', function() {
   it('* * *', function() {
@@ -9,8 +8,8 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         * * *
-        `
-      )
+        `,
+      ),
     );
     const expected = ['article', ['hr']];
     assert.deepEqual(actual, expected);
@@ -21,8 +20,8 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         ***
-        `
-      )
+        `,
+      ),
     );
     const expected = ['article', ['hr']];
     assert.deepEqual(actual, expected);
@@ -33,8 +32,8 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         *****
-        `
-      )
+        `,
+      ),
     );
     const expected = ['article', ['hr']];
     assert.deepEqual(actual, expected);
@@ -45,8 +44,8 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         - - -
-        `
-      )
+        `,
+      ),
     );
     const expected = ['article', ['hr']];
     assert.deepEqual(actual, expected);
@@ -57,8 +56,8 @@ describe('HORIZONTAL RULES', function() {
       unpad(
         `
         --------------
-        `
-      )
+        `,
+      ),
     );
     const expected = ['article', ['hr']];
     assert.deepEqual(actual, expected);
