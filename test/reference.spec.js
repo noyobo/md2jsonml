@@ -1,7 +1,6 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
 describe('link references', function() {
   it('work', function() {
@@ -16,8 +15,8 @@ describe('link references', function() {
         * Something
         * [Something](www.something.com)
         * ![Somethong](www.comething.com/img)
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -27,17 +26,17 @@ describe('link references', function() {
         [
           'a',
           {
-            href: 'http://npmjs.org/task/378711'
+            href: 'http://npmjs.org/task/378711',
           },
           [
             'img',
             {
               src: 'http://npmjs.org/task/378711/status.svg',
               title: 'build status',
-              alt: 'build status'
-            }
-          ]
-        ]
+              alt: 'build status',
+            },
+          ],
+        ],
       ],
       [
         'ul',
@@ -50,11 +49,11 @@ describe('link references', function() {
               'a',
               {
                 title: null,
-                href: 'www.something.com'
+                href: 'www.something.com',
               },
-              'Something'
-            ]
-          ]
+              'Something',
+            ],
+          ],
         ],
         [
           'li',
@@ -65,12 +64,12 @@ describe('link references', function() {
               {
                 title: null,
                 src: 'www.comething.com/img',
-                alt: 'Somethong'
-              }
-            ]
-          ]
-        ]
-      ]
+                alt: 'Somethong',
+              },
+            ],
+          ],
+        ],
+      ],
     ];
     assert.deepEqual(actual, expected);
   });

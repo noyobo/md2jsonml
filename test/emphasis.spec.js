@@ -1,9 +1,8 @@
 const md2jsonml = require('../src/md2jsonml');
 const assert = require('assert');
 const unpad = require('./unpad');
-const util = require('util');
 
-describe('EMPHASIS', function() {
+describe('luanch', function() {
   it('work', function() {
     const actual = md2jsonml(
       unpad(
@@ -17,8 +16,8 @@ describe('EMPHASIS', function() {
         __double underscores__
 
         \`inline code\`
-        `
-      )
+        `,
+      ),
     );
 
     const expected = [
@@ -27,7 +26,7 @@ describe('EMPHASIS', function() {
       ['p', ['em', 'single underscores']],
       ['p', ['strong', 'double asterisks']],
       ['p', ['strong', 'double underscores']],
-      ['p', ['code', 'inline code']]
+      ['p', ['code', 'inline code']],
     ];
     assert.deepEqual(actual, expected);
   });

@@ -1,5 +1,3 @@
-/* eslint consistent-return: off, no-case-declarations: off, no-use-before-define: off */
-
 var html2jsonml = require('./html2jsoml');
 
 var isTHead = false;
@@ -31,7 +29,10 @@ function transformer(node, index) {
     return node.map(transformer, index);
   }
 
-  var transformedChildren = node.type === 'table' ? transformer(node.children.slice(1)) : transformer(node.children);
+  var transformedChildren =
+    node.type === 'table'
+      ? transformer(node.children.slice(1))
+      : transformer(node.children);
 
   switch (node.type) {
     case 'root':
@@ -65,7 +66,11 @@ function transformer(node, index) {
       ];
     case 'table':
       isTHead = true;
-      return ['table', ['thead', transformTHead(node.children[0])], ['tbody'].concat(transformedChildren)];
+      return [
+        'table',
+        ['thead', transformTHead(node.children[0])],
+        ['tbody'].concat(transformedChildren),
+      ];
     case 'tableRow':
       return ['tr'].concat(transformedChildren);
     case 'tableCell':
@@ -113,34 +118,53 @@ function transformer(node, index) {
 }
 
 var placeholderParent;
+var parentNode;
 var definitionRegex = /reference#([^\]]+)/;
 // replace __tag_content_placeholder__
 function placeholderReplace(item, index) {
-  if (Array.isArray(item)) {
-    item.forEach(placeholderReplace.bind(item));
+  if (item === '' || !item) {
+    this.splice(index, 1);
   } else if (placeholderParent) {
     placeholderParent.push(item);
-    this.splice(index, 1);
     placeholderParent = null;
+    this.splice(index, 1);
+    // @hack 修改了当前数组的长度, 会中断 forEach 的下一个值
+    parentNode = this;
+    this.forEach(placeholderReplace.bind(this));
+  } else if (item === 'a') {
+    // eslint-disable-next-line no-unused-vars
+    var [tag, props, children] = this;
+    if (definitionRegex.test(props.href)) {
+      var linkRef = definitionRegex.exec(props.href);
+      if (linkRef && linkRef[1]) {
+        var linkUrl =
+          definitionMap[linkRef[1]] && definitionMap[linkRef[1]].url;
+        if (linkUrl) {
+          props.href = props.href.replace(definitionRegex, linkUrl);
+        } else {
+          // @fixed https://github.com/noyobo/md2jsonml/issues/11
+          // 未指定 reference 还原回字符串
+          parentNode[parentNode.length - 1] = `[${children}]`;
+        }
+      }
+    }
   } else if (item === '__tag_content_placeholder__') {
     placeholderParent = this;
     this.splice(index, 1);
-  } else if (definitionRegex.test(item.href)) {
-    item.href = item.href.replace(definitionRegex, (str, ref) => definitionMap[ref] && definitionMap[ref].url);
-  } else if (definitionRegex.test(item.src)) {
-    item.src = item.src.replace(definitionRegex, (str, ref) => definitionMap[ref] && definitionMap[ref].url);
-  }
-}
-
-// filter empty tag
-function filterEmpty(item, index) {
-  if (item === '') {
-    this.splice(index, 1);
+  } else if (item && definitionRegex.test(item.src)) {
+    var srcRef = definitionRegex.exec(item.src);
+    if (srcRef && srcRef[1]) {
+      var srcUrl = definitionMap[srcRef[1]] && definitionMap[srcRef[1]].url;
+      if (srcUrl) {
+        item.src = item.src.replace(definitionRegex, srcUrl);
+      }
+    }
   } else if (Array.isArray(item)) {
     if (item.length === 0 || item[0] === '') {
       this.splice(index, 1);
     } else {
-      item.forEach(filterEmpty.bind(item));
+      parentNode = this;
+      item.forEach(placeholderReplace.bind(item));
     }
   }
 }
@@ -160,7 +184,7 @@ module.exports = (ast) => {
   var markdownData = transformer(ast);
 
   markdownData = markdownData.filter(filterDefinition);
+
   markdownData.forEach(placeholderReplace.bind(markdownData));
-  markdownData.forEach(filterEmpty.bind(markdownData));
   return markdownData;
 };

@@ -11,14 +11,14 @@ var a = `
 
 ## 相关内容
 
-- 详细安装文档： [http://ice.alibaba-inc.com/docs/get-started](http://ice.alibaba-inc.com/docs/get-started)
+- 详细安装文档： [http://example.com/docs/get-started](http://example.com/docs/get-started)
 
 ## 下节内容
 
 下节内容会帮助大家一步步创建一个实际的业务项目，包括创建新的页面、调试页面以及页面代码简介。
 \`\`\`\`
-`
+`;
 
-var md2 = require('../')
+var md2 = require('../src/md2jsonml');
 
-console.log(md2(a))
+console.log(JSON.stringify(md2(a), null, 2));
